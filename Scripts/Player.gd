@@ -10,7 +10,6 @@ class_name Player
 @export var jump_strength : float = 20.0
 
 func _ready():
-	speed = 300.0
 	velocity = Vector2.ZERO
 
 func _process(delta):
@@ -24,7 +23,7 @@ func move(_del : float) -> void:
 		direction.y += gravity * drag_factor
 	
 	if Input.is_action_just_pressed("jump"):
-		direction.y -= 20.0
+		direction.y -= jump_strength
 	
 	if direction.x > 1.0:
 		direction = direction.normalized()
@@ -33,13 +32,18 @@ func move(_del : float) -> void:
 	steering_vector = desired_velocity - velocity
 	velocity += steering_vector * drag_factor
 	
+	
+	
 	move_and_slide()
 	
-	if direction != Vector2.ZERO and is_on_floor():
+	if direction != Vector2.ZERO:
 		if direction.x < 0.0:
 			player_sprite.flip_h = true
 		else:
 			player_sprite.flip_h = false
-		player_sprite.play("run")
-	elif direction == Vector2.ZERO and is_on_floor():
-		player_sprite.play("idle")
+				
+	if is_on_floor():
+		if direction != Vector2.ZERO:
+			player_sprite.play("run")
+		elif direction == Vector2.ZERO:
+			player_sprite.play("idle")
