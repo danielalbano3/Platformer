@@ -1,5 +1,18 @@
-[gd_scene format=3 uid="uid://o6k7bjw5w0xo"]
+[gd_scene load_steps=3 format=3 uid="uid://o6k7bjw5w0xo"]
+
+[ext_resource type="Texture2D" uid="uid://ci1kbl0cmaqes" path="res://Assets/Images/Enemy/oposum.png" id="1_o3bq2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckm8q"]
+size = Vector2(32, 18)
 
 [node name="Monster" type="CharacterBody2D"]
 
+[node name="Oposum" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("1_o3bq2")
+region_enabled = true
+region_rect = Rect2(144, 0, 36, 36)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ckm8q")
