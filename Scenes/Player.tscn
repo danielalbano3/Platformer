@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bffh0yhvilisi"]
+[gd_scene load_steps=28 format=3 uid="uid://bffh0yhvilisi"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_georp"]
 [ext_resource type="Texture2D" uid="uid://b1jkflle8qrbt" path="res://Assets/Images/Player/payer-run.png" id="2_uvqjn"]
@@ -43,11 +43,11 @@ region = Rect2(66, 0, 33, 32)
 atlas = ExtResource("4_ow0gu")
 region = Rect2(99, 0, 33, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fflwa"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_74h8r"]
 atlas = ExtResource("5_w1a3d")
 region = Rect2(0, 0, 33, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d1mvc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_invjg"]
 atlas = ExtResource("5_w1a3d")
 region = Rect2(33, 0, 33, 32)
 
@@ -120,13 +120,13 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fflwa")
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_74h8r")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_d1mvc")
+"texture": SubResource("AtlasTexture_invjg")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump",
 "speed": 5.0
 }, {
@@ -157,7 +157,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i2w6s"]
 size = Vector2(16, 21)
 
+[sub_resource type="Animation" id="Animation_5f8f6"]
+resource_name = "jump"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1fgtr"]
+_data = {
+"jump": SubResource("Animation_5f8f6")
+}
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 0
@@ -167,9 +173,7 @@ jump_strength = 50.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cxo7t")
-animation = &"run"
-frame = 2
-frame_progress = 0.791638
+animation = &"jump"
 offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
