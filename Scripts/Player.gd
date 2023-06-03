@@ -36,7 +36,7 @@ func move(_del : float) -> void:
 	
 	move_and_slide()
 	
-	if direction != Vector2.ZERO:
+	if direction.x != 0.0:
 		if direction.x < 0.0:
 			player_sprite.flip_h = true
 		else:
@@ -47,3 +47,5 @@ func move(_del : float) -> void:
 			player_sprite.play("run")
 		elif direction == Vector2.ZERO:
 			player_sprite.play("idle")
+	
+	
