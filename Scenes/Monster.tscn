@@ -3,9 +3,6 @@
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_4vsmq"]
 [ext_resource type="Texture2D" uid="uid://ci1kbl0cmaqes" path="res://Assets/Images/Enemy/oposum.png" id="1_o3bq2"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckm8q"]
-size = Vector2(32, 18)
-
 [sub_resource type="Animation" id="Animation_wr4v3"]
 resource_name = "moving"
 
@@ -64,12 +61,11 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckm8q"]
+size = Vector2(32, 18)
+
 [node name="Monster" type="CharacterBody2D"]
 script = ExtResource("1_4vsmq")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_ckm8q")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -83,3 +79,7 @@ frame = 4
 frame_progress = 0.65946
 offset = Vector2(0, -8)
 flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ckm8q")
