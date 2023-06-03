@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ds2v2cx25yopm"]
+[gd_scene load_steps=7 format=3 uid="uid://ds2v2cx25yopm"]
 
 [ext_resource type="Texture2D" uid="uid://x1lf5w2ibi4e" path="res://Assets/Images/World/Environment/tileset.png" id="1_8xyv3"]
+[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_o0ohx"]
+[ext_resource type="Texture2D" uid="uid://dmcp2ohspijlq" path="res://Assets/Images/World/Environment/back.png" id="2_n6a30"]
 [ext_resource type="PackedScene" uid="uid://bffh0yhvilisi" path="res://Scenes/Player.tscn" id="2_qvtct"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_on051"]
@@ -404,6 +406,20 @@ physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_on051")
 
 [node name="Main" type="Node2D"]
+position = Vector2(376, 344)
+script = ExtResource("1_o0ohx")
+scrollspeed = 10.0
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+follow_viewport_scale = 0.1
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1280, 0)
+
+[node name="Back" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+scale = Vector2(3.33333, 3)
+texture = ExtResource("2_n6a30")
+centered = false
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_4far4")

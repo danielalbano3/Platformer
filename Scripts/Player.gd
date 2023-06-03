@@ -1,6 +1,7 @@
 extends Actor
 class_name Player
 
+
 @onready var anim : AnimationPlayer = $AnimationPlayer
 @onready var player_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var visible_alert : VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D 
