@@ -1,18 +1,85 @@
-[gd_scene load_steps=3 format=3 uid="uid://o6k7bjw5w0xo"]
+[gd_scene load_steps=13 format=3 uid="uid://o6k7bjw5w0xo"]
 
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_4vsmq"]
 [ext_resource type="Texture2D" uid="uid://ci1kbl0cmaqes" path="res://Assets/Images/Enemy/oposum.png" id="1_o3bq2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ckm8q"]
 size = Vector2(32, 18)
 
-[node name="Monster" type="CharacterBody2D"]
+[sub_resource type="Animation" id="Animation_wr4v3"]
+resource_name = "moving"
 
-[node name="Oposum" type="Sprite2D" parent="."]
-position = Vector2(0, -8)
-texture = ExtResource("1_o3bq2")
-region_enabled = true
-region_rect = Rect2(144, 0, 36, 36)
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_haq3e"]
+_data = {
+"moving": SubResource("Animation_wr4v3")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l27yi"]
+atlas = ExtResource("1_o3bq2")
+region = Rect2(0, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74mat"]
+atlas = ExtResource("1_o3bq2")
+region = Rect2(36, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1nqc"]
+atlas = ExtResource("1_o3bq2")
+region = Rect2(72, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbcpi"]
+atlas = ExtResource("1_o3bq2")
+region = Rect2(108, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oku88"]
+atlas = ExtResource("1_o3bq2")
+region = Rect2(144, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_csmlp"]
+atlas = ExtResource("1_o3bq2")
+region = Rect2(180, 0, 36, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e6nsa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l27yi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74mat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1nqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbcpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oku88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_csmlp")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 10.0
+}]
+
+[node name="Monster" type="CharacterBody2D"]
+script = ExtResource("1_4vsmq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_ckm8q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_haq3e")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_e6nsa")
+animation = &"moving"
+frame = 4
+frame_progress = 0.65946
+offset = Vector2(0, -8)
+flip_h = true
