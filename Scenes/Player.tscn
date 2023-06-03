@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bffh0yhvilisi"]
+[gd_scene load_steps=27 format=3 uid="uid://bffh0yhvilisi"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_georp"]
 [ext_resource type="Texture2D" uid="uid://b1jkflle8qrbt" path="res://Assets/Images/Player/payer-run.png" id="2_uvqjn"]
@@ -157,29 +157,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i2w6s"]
 size = Vector2(16, 21)
 
-[sub_resource type="Animation" id="Animation_i5lav"]
-resource_name = "run"
-
-[sub_resource type="Animation" id="Animation_kussn"]
-resource_name = "climb"
-
-[sub_resource type="Animation" id="Animation_3sbts"]
-resource_name = "hurt"
-
-[sub_resource type="Animation" id="Animation_8dn6m"]
-resource_name = "idle"
-
-[sub_resource type="Animation" id="Animation_3m7f8"]
-resource_name = "jump"
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1fgtr"]
-_data = {
-"climb": SubResource("Animation_kussn"),
-"hurt": SubResource("Animation_3sbts"),
-"idle": SubResource("Animation_8dn6m"),
-"jump": SubResource("Animation_3m7f8"),
-"run": SubResource("Animation_i5lav")
-}
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 0
@@ -190,9 +168,10 @@ sprite_frames = SubResource("SpriteFrames_cxo7t")
 animation = &"run"
 frame = 2
 frame_progress = 0.791638
+offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 5.5)
+position = Vector2(-1, -2.5)
 shape = SubResource("RectangleShape2D_i2w6s")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -204,3 +183,5 @@ libraries = {
 zoom = Vector2(5, 5)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-1, -2.5)
+scale = Vector2(0.9, 1.05)

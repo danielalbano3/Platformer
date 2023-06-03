@@ -1,9 +1,10 @@
 extends Actor
 class_name Player
 
-@onready var animation_list : PackedStringArray = $AnimatedSprite2D.sprite_frames.get_animation_names()
 @onready var anim : AnimationPlayer = $AnimationPlayer
+@onready var player_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var visible_alert : VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D 
+@onready var cam : Camera2D = $Camera2D
 
 @export var speed : float = 300.0
 @export var jump_strength : float = 20.0
@@ -33,3 +34,12 @@ func move(_del : float) -> void:
 	velocity += steering_vector * drag_factor
 	
 	move_and_slide()
+	
+	if direction != Vector2.ZERO and is_on_floor():
+		if direction.x < 0.0:
+			player_sprite.flip_h = true
+		else:
+			player_sprite.flip_h = false
+		player_sprite.play("run")
+	elif direction == Vector2.ZERO and is_on_floor():
+		player_sprite.play("idle")
