@@ -14,7 +14,12 @@ func _process(delta):
 func move(_del : float) -> void:
 	var direction : Vector2 = Vector2.ZERO
 	direction.x = Input.get_axis("go_left","go_right")
-		
+	
+	if is_on_floor():
+		direction.y = 0.0
+	else:
+		direction.y += gravity
+	
 #	if Input.is_action_just_pressed("jump"):
 	
 	if direction.length() > 1.0:
